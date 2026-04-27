@@ -9,13 +9,22 @@ class FlutterWidgetsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return const MaterialApp(home: HomeScreen());
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Container(
           width: 300,
           height: 150,
-          color: Colors.blue,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
+            color: Colors.blue,
             borderRadius: BorderRadius.all(Radius.circular(16.0)),
           ),
         ),
