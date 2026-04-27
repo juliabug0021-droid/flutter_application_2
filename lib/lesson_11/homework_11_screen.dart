@@ -27,6 +27,26 @@ class HomeScreen extends StatelessWidget {
             color: Colors.blue,
             borderRadius: BorderRadius.all(Radius.circular(16.0)),
           ),
+          padding: const EdgeInsets.all(10.0),
+          child: Align(
+            alignment: Alignment.bottomRight,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              spacing: 10,
+              children: [
+                Icon(Icons.star, color: Colors.yellow),
+                Text(
+                  'Привіт, Flutter!',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                Icon(Icons.star, color: Colors.yellow),
+              ],
+            ),
+          ),
         ),
       ),
     );
