@@ -18,7 +18,7 @@ class WidgetsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             NavigationCard(
-              title: 'Widgets Part 1',
+              title: 'Homework lesson 11',
               description:
                   'Container, SizedBox, Padding, Align, Center, Text, Row, '
                   'Column, Expanded, Buttons, Scroll',
@@ -31,7 +31,7 @@ class WidgetsScreen extends StatelessWidget {
             ),
 
             NavigationCard(
-              title: 'Widgets Part 2',
+              title: 'Homework lesson 12',
               description:
                   'Custom Widgets, Stateless vs Stateful Widgets, '
                   'Gesture Detector & InkWel, '
