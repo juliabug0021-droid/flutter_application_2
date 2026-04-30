@@ -31,7 +31,7 @@ class WidgetsScreen extends StatelessWidget {
             ),
 
             NavigationCard(
-              title: 'Homework lesson 12',
+              title: 'Homework lesson',
               description:
                   'Custom Widgets, Stateless vs Stateful Widgets, '
                   'Gesture Detector & InkWel, '
