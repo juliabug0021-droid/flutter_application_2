@@ -40,6 +40,52 @@ class FlutterWidgetsApp12 extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: BottomAppBar(
+        color: (Colors.white),
+        height: 114,
+        //видавало помилку про те, що вміст надто великий, правильно що вказала
+        //висоту аппбару? чи можна якось по-іншому?
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 16, 12, 0),
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: (Colors.blue),
+                  minimumSize: const Size(double.infinity, 48),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  padding: const EdgeInsets.fromLTRB(24, 10, 24, 10),
+                ),
+                child: const Text(
+                  'Надіслати',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: "Silpo Text",
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight(600),
+                    height: 1.4,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 21),
+            Container(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Image.asset(
+                'assets/images/Home Indicator.png',
+                width: 134,
+                height: 5,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
