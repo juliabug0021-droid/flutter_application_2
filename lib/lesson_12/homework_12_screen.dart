@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const FlutterWidgetsApp12());
-}
-
 class FlutterWidgetsApp12 extends StatelessWidget {
-  const FlutterWidgetsApp12({super.key});
+  FlutterWidgetsApp12({super.key});
+  final textController1 = TextEditingController();
+  final textController2 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +38,7 @@ class FlutterWidgetsApp12 extends StatelessWidget {
         ),
       ),
       body: Column(
+        spacing: 10,
         children: [
           Container(
             padding: const EdgeInsets.all(16.0),
@@ -70,6 +69,20 @@ class FlutterWidgetsApp12 extends StatelessWidget {
               ],
             ),
           ),
+          const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              'Яку оціночку поставите відділам?',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 18,
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight(600),
+                height: 1.3,
+              ),
+            ),
+          ),
+          AskSection(title: 'Випічка', textController: textController1),
         ],
       ),
       bottomNavigationBar: BottomAppBar(
@@ -116,6 +129,167 @@ class FlutterWidgetsApp12 extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class AskSection extends StatefulWidget {
+  final String title;
+  final TextEditingController textController;
+  const AskSection({
+    super.key,
+    required this.title,
+    required this.textController,
+  });
+
+  @override
+  State<AskSection> createState() => _AskSectionState();
+}
+
+class _AskSectionState extends State<AskSection> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(24)),
+      ),
+
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 10,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              widget.title,
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight(600),
+                height: 1.4,
+              ),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(1),
+            decoration: const BoxDecoration(
+              color: Color(0xFFF6F8FD),
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+              border: Border.fromBorderSide(
+                BorderSide(color: Color.fromRGBO(19, 19, 30, 0.04), width: 1),
+              ),
+            ),
+
+            child: Padding(
+              padding: const EdgeInsetsGeometry.fromLTRB(12, 8, 12, 8),
+              child: Row(
+                spacing: 12,
+                children: [
+                  const Text(
+                    'Обслуговування',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      color: Color.fromRGBO(32, 33, 36, 0.87),
+                      fontSize: 16,
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight(400),
+                      height: 1.4,
+                    ),
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Image.asset(
+                      'assets/images/Rating Dislike.png',
+                      width: 24,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Image.asset(
+                      'assets/images/Default Like.png',
+                      width: 24,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(1),
+            decoration: const BoxDecoration(
+              color: Color(0xFFF6F8FD),
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+              border: Border.fromBorderSide(
+                BorderSide(color: Color.fromRGBO(19, 19, 30, 0.04), width: 1),
+              ),
+            ),
+
+            child: Padding(
+              padding: const EdgeInsetsGeometry.fromLTRB(12, 8, 12, 8),
+              child: Row(
+                spacing: 12,
+                children: [
+                  const Text(
+                    'Асортимент',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      color: Color.fromRGBO(32, 33, 36, 0.87),
+                      fontSize: 16,
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight(400),
+                      height: 1.4,
+                    ),
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Image.asset(
+                      'assets/images/Default Dislike.png',
+                      width: 24,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Image.asset(
+                      'assets/images/Rating Like.png',
+                      width: 24,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Padding(
+            padding: const EdgeInsets.all(1.0),
+            child: TextField(
+              controller: widget.textController,
+              decoration: const InputDecoration(
+                labelText: 'Розкажіть докладніше',
+                labelStyle: TextStyle(
+                  color: Color.fromRGBO(32, 33, 36, 0.54),
+                  fontSize: 16,
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight(400),
+                  height: 1.4,
+                ),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color.fromRGBO(32, 33, 36, 0.24),
+                    width: 1,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                ),
+                contentPadding: EdgeInsets.fromLTRB(16, 12, 12, 12),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

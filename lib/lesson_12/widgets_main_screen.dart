@@ -39,7 +39,7 @@ class WidgetsScreen extends StatelessWidget {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute<Widget>(
-                  builder: (context) => const FlutterWidgetsApp12(),
+                  builder: (context) => FlutterWidgetsApp12(),
                 ),
               ),
             ),
