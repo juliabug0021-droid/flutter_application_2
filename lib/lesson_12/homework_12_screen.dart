@@ -28,7 +28,6 @@ class FlutterWidgetsApp12 extends StatelessWidget {
               const Text(
                 'Оцінка візиту до магазину',
                 style: TextStyle(
-                  fontFamily: "Silpo Text",
                   color: Colors.black,
                   fontSize: 20,
                   fontStyle: FontStyle.normal,
@@ -39,6 +38,39 @@ class FlutterWidgetsApp12 extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      body: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(16.0),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(24),
+                bottomRight: Radius.circular(24),
+              ),
+            ),
+
+            child: Row(
+              spacing: 8,
+              mainAxisAlignment: MainAxisAlignment.center,
+
+              children: [
+                ...List.generate(
+                  4,
+                  (index) => IconButton(
+                    onPressed: () {},
+                    icon: Image.asset('assets/images/star.png', width: 48),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: Image.asset('assets/images/grey star.png', width: 48),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomAppBar(
         color: (Colors.white),
@@ -64,7 +96,6 @@ class FlutterWidgetsApp12 extends StatelessWidget {
                   'Надіслати',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontFamily: "Silpo Text",
                     color: Colors.white,
                     fontSize: 16,
                     fontStyle: FontStyle.normal,
