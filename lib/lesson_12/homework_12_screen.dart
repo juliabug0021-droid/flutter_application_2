@@ -4,86 +4,139 @@ class FlutterWidgetsApp12 extends StatelessWidget {
   FlutterWidgetsApp12({super.key});
   final textController1 = TextEditingController();
   final textController2 = TextEditingController();
+  final _textController3 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Image.asset('assets/images/leading.png', width: 9, height: 16),
+        ),
         backgroundColor: (Colors.white),
-        title: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: Image.asset(
-                  'assets/images/leading.png',
-                  width: 9,
-                  height: 16,
-                ),
+        title: const Padding(
+          padding: EdgeInsets.all(16.0),
+
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'Оцінка візиту до магазину',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight(600),
+                height: 1.2,
               ),
-              const SizedBox(width: 8),
-              const Text(
-                'Оцінка візиту до магазину',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight(600),
-                  height: 1.2,
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),
-      body: Column(
-        spacing: 10,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16.0),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(24),
-                bottomRight: Radius.circular(24),
+      body: SingleChildScrollView(
+        child: Column(
+          spacing: 10,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16.0),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(24),
+                  bottomRight: Radius.circular(24),
+                ),
               ),
-            ),
 
-            child: Row(
-              spacing: 8,
-              mainAxisAlignment: MainAxisAlignment.center,
+              child: Row(
+                spacing: 8,
+                mainAxisAlignment: MainAxisAlignment.center,
 
-              children: [
-                ...List.generate(
-                  4,
-                  (index) => IconButton(
-                    onPressed: () {},
-                    icon: Image.asset('assets/images/star.png', width: 48),
+                children: [
+                  ...List.generate(
+                    4,
+                    (index) => IconButton(
+                      onPressed: () {},
+                      icon: Image.asset('assets/images/star.png', width: 48),
+                    ),
                   ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Image.asset('assets/images/grey star.png', width: 48),
-                ),
-              ],
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
-              'Яку оціночку поставите відділам?',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 18,
-                fontStyle: FontStyle.normal,
-                fontWeight: FontWeight(600),
-                height: 1.3,
+                  IconButton(
+                    onPressed: () {},
+                    icon: Image.asset('assets/images/grey star.png', width: 48),
+                  ),
+                ],
               ),
             ),
-          ),
-          AskSection(title: 'Випічка', textController: textController1),
-        ],
+            const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                'Яку оціночку поставите відділам?',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight(600),
+                  height: 1.3,
+                ),
+              ),
+            ),
+            AskSection(title: 'Випічка', textController: textController1),
+            AskSection(
+              title: 'Лавка традицій',
+              textController: textController2,
+            ),
+            Container(
+              padding: const EdgeInsetsGeometry.fromLTRB(16, 4, 16, 4),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(24),
+              ),
+              child: Padding(
+                padding: const EdgeInsetsGeometry.fromLTRB(0, 12, 0, 12),
+                child: Column(
+                  children: [
+                    const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Є що додати?',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18,
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight(600),
+                          height: 1.3,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+                    TextField(
+                      controller: _textController3,
+                      decoration: const InputDecoration(
+                        labelText: 'Поділіться загальним враженням',
+                        labelStyle: TextStyle(
+                          color: Color.fromRGBO(32, 33, 36, 0.54),
+                          fontSize: 16,
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight(400),
+                          height: 1.4,
+                        ),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color.fromRGBO(32, 33, 36, 0.24),
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                        ),
+                        contentPadding: EdgeInsets.fromLTRB(16, 12, 12, 12),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
         color: (Colors.white),
