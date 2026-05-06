@@ -54,17 +54,22 @@ class FlutterWidgetsApp12 extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
 
                 children: [
-                  ...List.generate(
-                    4,
-                    (index) => IconButton(
-                      onPressed: () {},
-                      icon: Image.asset('assets/images/star.png', width: 48),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Image.asset('assets/images/grey star.png', width: 48),
-                  ),
+                  ...List.generate(5, (index) {
+                    if (index == 4) {
+                      return IconButton(
+                        onPressed: () {},
+                        icon: Image.asset(
+                          'assets/images/grey star.png',
+                          width: 48,
+                        ),
+                      );
+                    } else {
+                      return IconButton(
+                        onPressed: () {},
+                        icon: Image.asset('assets/images/star.png', width: 48),
+                      );
+                    }
+                  }),
                 ],
               ),
             ),
