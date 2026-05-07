@@ -1,6 +1,7 @@
 // ignore_for_file: use_colored_box
 
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/lesson_13/utils_widget.dart';
 
 class WidgetConstrainsTrainingScreen extends StatefulWidget {
   const WidgetConstrainsTrainingScreen({super.key});
@@ -74,7 +75,10 @@ class TrainingExample1 extends StatelessWidget {
       height: 300,
       width: 300,
       color: Colors.green,
-      child: Container(width: 150, height: 150, color: Colors.red),
+      child: Align(
+        alignment: AlignmentGeometry.topRight,
+        child: Container(width: 150, height: 150, color: Colors.red),
+      ),
     );
   }
 }
@@ -92,7 +96,13 @@ class TrainingExample2 extends StatelessWidget {
     return Row(
       children: [
         Container(width: 100, height: 200, color: Colors.green),
-        Container(width: double.infinity, height: 200, color: Colors.blue),
+        Expanded(
+          child: Container(
+            width: double.infinity,
+            height: 200,
+            color: Colors.blue,
+          ),
+        ),
       ],
     );
   }
@@ -104,6 +114,9 @@ class TrainingExample2 extends StatelessWidget {
 // через alignment: Alignment(x, y).
 // Подивіться як вирівнювання працює зараз і який віджет
 // для цього використовується. В чому різниця з віджетом Align?
+// Відповіть: попередній віджет Center розташовує лише по центру, але також
+// огортає Container і "дозволяє" йому зайняти розміри 100х100. Align має більше
+// параметрів для розташування об'єктів
 
 class TrainingExample3 extends StatelessWidget {
   const TrainingExample3({super.key});
@@ -111,7 +124,8 @@ class TrainingExample3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.yellow,
-      child: Center(
+      child: Align(
+        alignment: const AlignmentGeometry.xy(1.0, -1.0),
         child: Container(color: Colors.green, width: 100, height: 100),
       ),
     );
@@ -130,10 +144,22 @@ class TrainingExample4 extends StatelessWidget {
   const TrainingExample4({super.key});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.green,
+    return Center(
+      child: Container(
+        height: 200,
+        width: 200,
+        color: Colors.green,
 
-      child: Container(color: Colors.orange, height: 200, width: 200),
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: LayoutBuilderWithPrint(
+            tag: 'Container orange task 4',
+            // максимальні розміри внутрішнього контейнера при перевірці
+            // 180х180, отже, все правильно працює
+            child: Container(color: Colors.orange, height: 200, width: 200),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -147,16 +173,31 @@ class TrainingExample4 extends StatelessWidget {
 // Подумайте, які розміри будуть у синього та червоного контейнерів.
 // Чи є різниця, якщо обгорнути контейнери в Padding чи передати параметри
 // margin чи передати padding?
+//
+// Відповідь: розміри синього контейнера будуть 132х132, червоного - 164х164
+// Якщо всередині контейнера прописати padding - це внутрішні відступи,
+// margin - це зовнішні відступи, а якщо контейнер обгорнути в Padding - це
+// будуть внутрішні відступи батьківського елементу, але не дорівнюють
+// margin контейнера, хоча в даному випадку візуально не відрізняються
 
 class TrainingExample5 extends StatelessWidget {
   const TrainingExample5({super.key});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.red,
+    return Center(
       child: Container(
-        color: Colors.blue,
-        child: Container(color: Colors.yellow, height: 100, width: 100),
+        margin: const EdgeInsets.all(16),
+        color: Colors.red,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Container(
+            color: Colors.blue,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Container(color: Colors.yellow, height: 100, width: 100),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -174,8 +215,15 @@ class TrainingExample6 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
+        height: 200,
+        width: 200,
         color: Colors.orange,
-        child: const Text('Lorem ipsum dolor sit amet, consectetur'),
+        child: const Center(
+          child: Text(
+            textAlign: TextAlign.center,
+            'Lorem ipsum dolor sit amet, consectetur',
+          ),
+        ),
       ),
     );
   }
@@ -194,9 +242,11 @@ class TrainingExample7 extends StatelessWidget {
     return Column(
       children: [
         Container(color: Colors.orange, height: 100, width: 100),
-        ListView.builder(
-          itemCount: 50,
-          itemBuilder: (context, index) => Text('Item $index'),
+        Expanded(
+          child: ListView.builder(
+            itemCount: 50,
+            itemBuilder: (context, index) => Text('Item $index'),
+          ),
         ),
       ],
     );
@@ -214,7 +264,7 @@ class TrainingExample8 extends StatelessWidget {
     return Column(
       children: [
         Expanded(child: Container(color: Colors.red)),
-        Expanded(child: Container(color: Colors.green)),
+        Expanded(flex: 2, child: Container(color: Colors.green)),
         Expanded(child: Container(color: Colors.blue)),
       ],
     );
@@ -231,7 +281,7 @@ class TrainingExample9 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded(child: Container(color: Colors.red, height: 100)),
+        Container(color: Colors.red, height: 100),
         Expanded(child: Container(color: Colors.green)),
       ],
     );
@@ -251,9 +301,11 @@ class TrainingExample10 extends StatelessWidget {
       child: Row(
         children: [
           Container(color: Colors.orange, height: 100, width: 100),
-          ListView.builder(
-            itemCount: 20,
-            itemBuilder: (context, index) => Text('Item $index'),
+          Expanded(
+            child: ListView.builder(
+              itemCount: 20,
+              itemBuilder: (context, index) => Text('Item $index'),
+            ),
           ),
         ],
       ),
@@ -272,7 +324,7 @@ class TrainingExample11 extends StatelessWidget {
     return Center(
       child: Row(
         children: [
-          Expanded(child: Container(color: Colors.red, width: 80, height: 100)),
+          Container(color: Colors.red, width: 80, height: 100),
           Expanded(child: Container(color: Colors.green, height: 100)),
           Expanded(child: Container(color: Colors.blue, height: 100)),
         ],
@@ -298,19 +350,32 @@ class TrainingExample12 extends StatelessWidget {
   const TrainingExample12({super.key});
   @override
   Widget build(BuildContext context) {
-    const redContainerWidth = 100.0;
+    const redContainerWidth = 600.0;
 
-    return Row(
-      children: [
-        Container(
-          color: Colors.red,
-          height: 100,
-          width: redContainerWidth,
-          child: const Text('Hi'),
-        ),
+    return LayoutBuilder(
+      builder: (context, constrains) {
+        if (constrains.maxWidth > redContainerWidth) {
+          return Row(
+            children: [
+              Container(
+                color: Colors.red,
+                height: 100,
+                width: redContainerWidth,
+                child: const Text('Hi'),
+              ),
 
-        Expanded(child: Container(color: Colors.green, height: 100)),
-      ],
+              Expanded(child: Container(color: Colors.green, height: 100)),
+            ],
+          );
+        } else {
+          return Container(
+            color: Colors.red,
+            height: 100,
+            width: redContainerWidth,
+            child: const Text('Hi'),
+          );
+        }
+      },
     );
   }
 }

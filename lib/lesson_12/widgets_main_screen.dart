@@ -46,10 +46,7 @@ class WidgetsScreen extends StatelessWidget {
             ),
             NavigationCard(
               title: 'Homework lesson 13',
-              description:
-                  'Custom Widgets, Stateless vs Stateful Widgets, '
-                  'Gesture Detector & InkWel, '
-                  'TextFields & TextFormFields',
+              description: 'Training Examples',
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute<Widget>(
