@@ -394,9 +394,11 @@ class TrainingExample13 extends StatelessWidget {
         width: 200,
         height: 50,
         color: Colors.amber,
-        child: const Text(
-          'Дуже довгий текст який не поміщається',
-          style: TextStyle(fontSize: 30),
+        child: const FittedBox(
+          child: Text(
+            'Дуже довгий текст який не поміщається',
+            style: TextStyle(fontSize: 30),
+          ),
         ),
       ),
     );
@@ -421,6 +423,7 @@ class TrainingExample14 extends StatelessWidget {
         height: 100,
         color: Colors.lightBlue.shade100,
         child: const FittedBox(
+          fit: BoxFit.scaleDown,
           child: Text('Flutter', style: TextStyle(fontSize: 30)),
         ),
       ),
@@ -439,7 +442,10 @@ class TrainingExample15 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(color: Colors.yellow, width: 50, height: 50),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(minHeight: 200, minWidth: 200),
+        child: Container(color: Colors.yellow, width: 50, height: 50),
+      ),
     );
   }
 }
@@ -448,7 +454,9 @@ class TrainingExample15 extends StatelessWidget {
 // Тут просто розберіться - чому не застосовуються constraints ConstrainedBox?
 
 // Запишіть відповідь у коментарі до коду нижче
-// Відповідь: ConstrainedBox не застосовуються, тому що ...
+// Відповідь: ConstrainedBox не застосовуються, тому що розміри визначає
+// батьківський віджет SizedBox, і віджету ConstrainedBox він надає властивості
+// такі, що його максимальний розмір може бути 100х100
 class TrainingExample16 extends StatelessWidget {
   const TrainingExample16({super.key});
   @override
@@ -476,21 +484,18 @@ class TrainingExample17 extends StatelessWidget {
   const TrainingExample17({super.key});
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(minWidth: 250),
-            child: SizedBox(
-              width: 1000,
-              child: ElevatedButton(
-                onPressed: () {},
-                child: const Text('Press me'),
-              ),
-            ),
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(minWidth: 250),
+
+        child: SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () {},
+            child: const Text('Press me'),
           ),
         ),
-      ],
+      ),
     );
   }
 }
