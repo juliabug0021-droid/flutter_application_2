@@ -515,7 +515,13 @@ class TrainingExample18 extends StatelessWidget {
         color: Colors.blue,
         width: 200,
         height: 200,
-        child: Container(color: Colors.red, width: 50, height: 50),
+        child: OverflowBox(
+          minWidth: 0,
+          minHeight: 0,
+          maxWidth: double.infinity,
+          maxHeight: double.infinity,
+          child: Container(color: Colors.red, width: 50, height: 50),
+        ),
       ),
     );
   }
@@ -536,7 +542,11 @@ class TrainingExample19 extends StatelessWidget {
         color: Colors.blue,
         width: 200,
         height: 200,
-        child: UnconstrainedBox(
+        child: OverflowBox(
+          minWidth: 0,
+          minHeight: 0,
+          maxWidth: double.infinity,
+          maxHeight: double.infinity,
           child: Container(color: Colors.green, width: 300, height: 100),
         ),
       ),
@@ -549,7 +559,9 @@ class TrainingExample19 extends StatelessWidget {
 // накладається на червоний, але не накладається на синій (він знаходиться під
 // синім контейнером). Відповідь запишіть в коментарі до коду нижче.
 
-/// Відповідь: ...
+/// Відповідь: зелений контейнер накладається на червоний, бо це його child,
+/// а синій контейнер наступний в колонці за червоним і тому перекриває частину
+/// зеленого контейнера
 
 class TrainingExample20 extends StatelessWidget {
   const TrainingExample20({super.key});
@@ -576,7 +588,9 @@ class TrainingExample20 extends StatelessWidget {
 // На цьому прикладі розгляньте, чому в другому Column контейнер з зеленим
 // кольором не обмежується батьком LimitedBox.
 
-// Відповідь: ...
+// Відповідь: тому що розміри зеленого контейнера обмежуються SizedBox-ом.
+// Якщо встановити висоту контейнера більшу за висоту SizedBox, наприклад, 200
+// в даному випадку, то нічого не зміниться - контейнер залишиться висотою 100
 class TrainingExample21 extends StatelessWidget {
   const TrainingExample21({super.key});
   @override
@@ -592,13 +606,12 @@ class TrainingExample21 extends StatelessWidget {
           ],
         ),
         Column(
-          mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
               height: 100,
               child: LimitedBox(
                 maxHeight: 50,
-                child: Container(color: Colors.green, height: 100, width: 100),
+                child: Container(color: Colors.green, height: 200, width: 100),
               ),
             ),
           ],
@@ -611,22 +624,28 @@ class TrainingExample21 extends StatelessWidget {
 // Task 22:
 // Чому LimitedBox не впливає на розмір зеленого контейнера?
 
-// Відповідь: ...
+// Відповідь: LimitedBox працює лише в unconstrained боксах, тобто в
+// UnconstrainedBox або в Column тощо. Зараз він займає весь простір екрану і
+// передає ті ж обмеження ColoredBox-у. Тобто будь-який розмір в межах екрану
+
 class TrainingExample22 extends StatelessWidget {
   const TrainingExample22({super.key});
   @override
   Widget build(BuildContext context) {
     return const LimitedBox(
       maxHeight: 80,
-      child: ColoredBox(
-        color: Colors.green,
-        child: Text(
-          'lorem ipsum dolor sit amet consectetur adipiscing elit sed do '
-          'eiusmod tempor incididunt ut labore et dolore magna aliqua, '
-          'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do '
-          'eiusmod tempor incididunt ut labore et dolore magna aliqua, '
-          'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do '
-          'eiusmod tempor incididunt ut labore et dolore magna aliqua, ',
+      child: LayoutBuilderWithPrint(
+        tag: 'ColoredBox',
+        child: ColoredBox(
+          color: Colors.green,
+          child: Text(
+            'lorem ipsum dolor sit amet consectetur adipiscing elit sed do '
+            'eiusmod tempor incididunt ut labore et dolore magna aliqua, '
+            'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do '
+            'eiusmod tempor incididunt ut labore et dolore magna aliqua, '
+            'Lorem ipsum dolor sit amet consectetur adipiscing elit sed do '
+            'eiusmod tempor incididunt ut labore et dolore magna aliqua, ',
+          ),
         ),
       ),
     );
