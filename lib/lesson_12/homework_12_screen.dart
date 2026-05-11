@@ -4,7 +4,7 @@ class FlutterWidgetsApp12 extends StatelessWidget {
   FlutterWidgetsApp12({super.key});
   final textController1 = TextEditingController();
   final textController2 = TextEditingController();
-  final _textController3 = TextEditingController();
+  final textController3 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -91,68 +91,20 @@ class FlutterWidgetsApp12 extends StatelessWidget {
               title: 'Лавка традицій',
               textController: textController2,
             ),
-            Container(
-              padding: const EdgeInsetsGeometry.fromLTRB(16, 4, 16, 4),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(24),
-              ),
-              child: Padding(
-                padding: const EdgeInsetsGeometry.fromLTRB(0, 12, 0, 12),
-                child: Column(
-                  children: [
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Є що додати?',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight(600),
-                          height: 1.3,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 18),
-                    TextField(
-                      controller: _textController3,
-                      decoration: const InputDecoration(
-                        labelText: 'Поділіться загальним враженням',
-                        labelStyle: TextStyle(
-                          color: Color.fromRGBO(32, 33, 36, 0.54),
-                          fontSize: 16,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight(400),
-                          height: 1.4,
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color.fromRGBO(32, 33, 36, 0.24),
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(8)),
-                        ),
-                        contentPadding: EdgeInsets.fromLTRB(16, 12, 12, 12),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                  ],
-                ),
-              ),
+            AskSectionWithoutLike(
+              title: 'Є що додати?',
+              textController: textController3,
             ),
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        color: (Colors.white),
-        height: 114,
-        //видавало помилку про те, що вміст надто великий, правильно що вказала
-        //висоту аппбару? чи можна якось по-іншому?
+      bottomNavigationBar: ColoredBox(
+        color: Colors.white,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(12, 16, 12, 0),
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
               child: ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
@@ -232,95 +184,16 @@ class _AskSectionState extends State<AskSection> {
               ),
             ),
           ),
-          Container(
-            padding: const EdgeInsets.all(1),
-            decoration: const BoxDecoration(
-              color: Color(0xFFF6F8FD),
-              borderRadius: BorderRadius.all(Radius.circular(12)),
-              border: Border.fromBorderSide(
-                BorderSide(color: Color.fromRGBO(19, 19, 30, 0.04), width: 1),
-              ),
-            ),
-
-            child: Padding(
-              padding: const EdgeInsetsGeometry.fromLTRB(12, 8, 12, 8),
-              child: Row(
-                spacing: 12,
-                children: [
-                  const Text(
-                    'Обслуговування',
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      color: Color.fromRGBO(32, 33, 36, 0.87),
-                      fontSize: 16,
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight(400),
-                      height: 1.4,
-                    ),
-                  ),
-                  const Spacer(),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Image.asset(
-                      'assets/images/Rating Dislike.png',
-                      width: 24,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Image.asset(
-                      'assets/images/Default Like.png',
-                      width: 24,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+          const RatingTile(
+            title: 'Обслуговування',
+            dislikeIcon: 'assets/images/Rating Dislike.png',
+            likeIcon: 'assets/images/Default Like.png',
           ),
-          Container(
-            padding: const EdgeInsets.all(1),
-            decoration: const BoxDecoration(
-              color: Color(0xFFF6F8FD),
-              borderRadius: BorderRadius.all(Radius.circular(12)),
-              border: Border.fromBorderSide(
-                BorderSide(color: Color.fromRGBO(19, 19, 30, 0.04), width: 1),
-              ),
-            ),
 
-            child: Padding(
-              padding: const EdgeInsetsGeometry.fromLTRB(12, 8, 12, 8),
-              child: Row(
-                spacing: 12,
-                children: [
-                  const Text(
-                    'Асортимент',
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      color: Color.fromRGBO(32, 33, 36, 0.87),
-                      fontSize: 16,
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight(400),
-                      height: 1.4,
-                    ),
-                  ),
-                  const Spacer(),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Image.asset(
-                      'assets/images/Default Dislike.png',
-                      width: 24,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Image.asset(
-                      'assets/images/Rating Like.png',
-                      width: 24,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+          const RatingTile(
+            title: 'Асортимент',
+            dislikeIcon: 'assets/images/Default Dislike.png',
+            likeIcon: 'assets/images/Rating Like.png',
           ),
           const SizedBox(height: 8),
           Padding(
@@ -348,6 +221,114 @@ class _AskSectionState extends State<AskSection> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class RatingTile extends StatelessWidget {
+  const RatingTile({
+    super.key,
+    required this.title,
+    required this.likeIcon,
+    required this.dislikeIcon,
+  });
+
+  final String title;
+  final String likeIcon;
+  final String dislikeIcon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF6F8FD),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color.fromRGBO(19, 19, 30, 0.04)),
+      ),
+      child: Row(
+        spacing: 12,
+        children: [
+          Text(
+            title,
+            textAlign: TextAlign.start,
+            style: const TextStyle(
+              color: Color.fromRGBO(32, 33, 36, 0.87),
+              fontSize: 16,
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight(400),
+              height: 1.4,
+            ),
+          ),
+          const Spacer(),
+          IconButton(
+            onPressed: () {},
+            icon: Image.asset(dislikeIcon, width: 24),
+          ),
+          IconButton(onPressed: () {}, icon: Image.asset(likeIcon, width: 24)),
+        ],
+      ),
+    );
+  }
+}
+
+class AskSectionWithoutLike extends StatelessWidget {
+  const AskSectionWithoutLike({
+    super.key,
+    required this.title,
+    required this.textController,
+  });
+  final String title;
+  final TextEditingController textController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsetsGeometry.fromLTRB(16, 4, 16, 4),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(24)),
+      child: Padding(
+        padding: const EdgeInsetsGeometry.fromLTRB(0, 12, 0, 12),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight(600),
+                  height: 1.3,
+                ),
+              ),
+            ),
+            const SizedBox(height: 18),
+            TextField(
+              controller: textController,
+              decoration: const InputDecoration(
+                labelText: 'Поділіться загальним враженням',
+                labelStyle: TextStyle(
+                  color: Color.fromRGBO(32, 33, 36, 0.54),
+                  fontSize: 16,
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight(400),
+                  height: 1.4,
+                ),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color.fromRGBO(32, 33, 36, 0.24),
+                    width: 1,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                ),
+                contentPadding: EdgeInsets.fromLTRB(16, 12, 12, 12),
+              ),
+            ),
+            const SizedBox(height: 8),
+          ],
+        ),
       ),
     );
   }
