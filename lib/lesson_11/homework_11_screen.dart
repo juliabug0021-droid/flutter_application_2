@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FlutterWidgetsApp extends StatelessWidget {
-  const FlutterWidgetsApp({super.key});
+class FlutterWidgetsApp11 extends StatelessWidget {
+  const FlutterWidgetsApp11({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(16.0)),
                 ),
                 padding: const EdgeInsets.all(10.0),
-                child: Align(
+                child: const Align(
                   alignment: Alignment.topLeft,
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -58,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(16.0)),
               ),
               padding: const EdgeInsets.all(10.0),
-              child: Align(
+              child: const Align(
                 alignment: Alignment.center,
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -86,7 +86,7 @@ class HomeScreen extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(16.0)),
               ),
               padding: const EdgeInsets.all(10.0),
-              child: Align(
+              child: const Align(
                 alignment: Alignment.bottomRight,
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
