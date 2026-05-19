@@ -5,16 +5,8 @@ class FlutterWidgetsApp11 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: HomeScreen());
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('')),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,

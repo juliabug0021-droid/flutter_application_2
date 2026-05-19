@@ -1,4 +1,4 @@
-import 'package:flutter_lab/lesson_11/homework_11_screen.dart';
+import 'package:flutter_lab/main.dart';
 import 'package:go_router/go_router.dart';
 
 // GoRouter configuration
