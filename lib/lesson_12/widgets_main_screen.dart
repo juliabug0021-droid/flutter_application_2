@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab/lesson_11/homework_11_screen.dart';
-import 'package:flutter_lab/lesson_12/homework_12_screen.dart';
-import 'package:flutter_lab/lesson_13/homework_13_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class WidgetsScreen extends StatelessWidget {
   const WidgetsScreen({super.key});
@@ -23,12 +21,7 @@ class WidgetsScreen extends StatelessWidget {
               description:
                   'Container, SizedBox, Padding, Align, Center, Text, Row, '
                   'Column, Expanded, Buttons, Scroll',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute<Widget>(
-                  builder: (context) => const FlutterWidgetsApp11(),
-                ),
-              ),
+              onTap: () => context.go('widgets/lesson_11'),
             ),
 
             NavigationCard(
@@ -37,22 +30,12 @@ class WidgetsScreen extends StatelessWidget {
                   'Custom Widgets, Stateless vs Stateful Widgets, '
                   'Gesture Detector & InkWel, '
                   'TextFields & TextFormFields',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute<Widget>(
-                  builder: (context) => FlutterWidgetsApp12(),
-                ),
-              ),
+              onTap: () => context.go('widgets/lesson_12'),
             ),
             NavigationCard(
               title: 'Homework lesson 13',
               description: 'Training Examples',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute<Widget>(
-                  builder: (context) => const WidgetConstrainsTrainingScreen(),
-                ),
-              ),
+              onTap: () => context.go('widgets/lesson_13'),
             ),
           ],
         ),

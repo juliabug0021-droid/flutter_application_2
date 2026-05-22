@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class FlutterWidgetsApp12 extends StatelessWidget {
   FlutterWidgetsApp12({super.key});
@@ -12,7 +13,7 @@ class FlutterWidgetsApp12 extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            context.pop(context);
           },
           icon: Image.asset('assets/images/leading.png', width: 9, height: 16),
         ),
