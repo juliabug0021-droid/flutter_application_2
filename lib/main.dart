@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_lab/lesson_18/homework_%D1%81ubit/homework_cubit_screen.dart';
 import 'package:flutter_lab/router/app_router.dart';
 import 'package:go_router/go_router.dart';
 
@@ -11,7 +13,10 @@ class FlutterWidgetsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(routerConfig: appRouter);
+    return BlocProvider(
+      create: (context) => CounterCubit(),
+      child: MaterialApp.router(routerConfig: appRouter),
+    );
   }
 }
 

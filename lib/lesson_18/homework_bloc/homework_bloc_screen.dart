@@ -8,17 +8,17 @@ class HomeworkBlocScreen extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<HomeworkBlocScreen> {
-  int _counter = 0;
+  int counter = 0;
 
   void _incrementCounter() {
     setState(() {
-      _counter++;
+      counter++;
     });
   }
 
   void _decrementCounter() {
     setState(() {
-      _counter--;
+      counter--;
     });
   }
 
@@ -31,10 +31,7 @@ class _MyHomePageState extends State<HomeworkBlocScreen> {
           mainAxisAlignment: .center,
           children: [
             const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+            Text('$counter', style: Theme.of(context).textTheme.headlineMedium),
           ],
         ),
       ),
