@@ -37,6 +37,11 @@ class WidgetsScreen extends StatelessWidget {
               description: 'Training Examples',
               onTap: () => context.go('widgets/lesson_13'),
             ),
+            NavigationCard(
+              title: 'Homework lesson 18',
+              description: 'State managment',
+              onTap: () => context.go('widgets/lesson_18'),
+            ),
           ],
         ),
       ),
