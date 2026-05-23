@@ -1,5 +1,7 @@
 import 'package:flutter_lab/lesson_11/homework_11_screen.dart';
 import 'package:flutter_lab/lesson_12/homework_12_screen.dart';
+import 'package:flutter_lab/lesson_18/homework_%D1%81ubit/homework_cubit_screen.dart';
+import 'package:flutter_lab/lesson_18/homework_bloc/homework_bloc_screen.dart';
 import 'package:flutter_lab/lesson_18/state_managment_base_screen.dart';
 import 'package:flutter_lab/widgets_main_screen.dart';
 import 'package:flutter_lab/lesson_13/homework_13_screen.dart';
@@ -32,6 +34,16 @@ final appRouter = GoRouter(
             GoRoute(
               path: 'lesson_18',
               builder: (context, state) => StateManagmentBaseScreen(),
+              routes: [
+                GoRoute(
+                  path: 'cubit',
+                  builder: (context, state) => HomeworkCubitScreen(),
+                ),
+                GoRoute(
+                  path: 'bloc',
+                  builder: (context, state) => HomeworkBlocScreen(),
+                ),
+              ],
             ),
           ],
         ),

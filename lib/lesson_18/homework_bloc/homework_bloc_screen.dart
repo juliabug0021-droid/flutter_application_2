@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HomeworkBlocScreen extends StatefulWidget {
-  final String title;
-
-  const HomeworkBlocScreen({super.key, required this.title});
+  const HomeworkBlocScreen({super.key});
 
   @override
   State<HomeworkBlocScreen> createState() => _MyHomePageState();
@@ -18,10 +16,16 @@ class _MyHomePageState extends State<HomeworkBlocScreen> {
     });
   }
 
+  void _decrementCounter() {
+    setState(() {
+      _counter--;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
+      appBar: AppBar(title: Text('Homework Bloc Screen')),
       body: Center(
         child: Column(
           mainAxisAlignment: .center,
@@ -34,10 +38,22 @@ class _MyHomePageState extends State<HomeworkBlocScreen> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      floatingActionButton: Row(
+        mainAxisAlignment: .end,
+
+        children: [
+          FloatingActionButton(
+            onPressed: _decrementCounter,
+            tooltip: 'Decrement',
+            child: const Icon(Icons.remove),
+          ),
+          const SizedBox(width: 8.0),
+          FloatingActionButton(
+            onPressed: _incrementCounter,
+            tooltip: 'Increment',
+            child: const Icon(Icons.add),
+          ),
+        ],
       ),
     );
   }
