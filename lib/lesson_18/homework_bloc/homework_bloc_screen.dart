@@ -1,27 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeworkBlocScreen extends StatefulWidget {
-  const HomeworkBlocScreen({super.key});
-
-  @override
-  State<HomeworkBlocScreen> createState() => _MyHomePageState();
+class CounterBloc extends Bloc<CounterEvent, int> {
+  CounterBloc() : super(0) {
+    on<DecrementEvent>((event, emit) => emit(state - 1));
+    on<IncrementEvent>((event, emit) => emit(state + 1));
+  }
 }
 
-class _MyHomePageState extends State<HomeworkBlocScreen> {
-  int counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      counter++;
-    });
-  }
-
-  void _decrementCounter() {
-    setState(() {
-      counter--;
-    });
-  }
-
+class HomeworkBlocScreen extends StatelessWidget {
+  const HomeworkBlocScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,8 +18,15 @@ class _MyHomePageState extends State<HomeworkBlocScreen> {
         child: Column(
           mainAxisAlignment: .center,
           children: [
-            const Text('You have pushed the button this many times:'),
-            Text('$counter', style: Theme.of(context).textTheme.headlineMedium),
+            Text('You have pushed the button this many times:'),
+            BlocBuilder<CounterBloc, int>(
+              builder: (context, state) {
+                return Text(
+                  '$state',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                );
+              },
+            ),
           ],
         ),
       ),
@@ -40,13 +35,17 @@ class _MyHomePageState extends State<HomeworkBlocScreen> {
 
         children: [
           FloatingActionButton(
-            onPressed: _decrementCounter,
+            onPressed: () {
+              context.read<CounterBloc>().add(DecrementEvent());
+            },
             tooltip: 'Decrement',
             child: const Icon(Icons.remove),
           ),
           const SizedBox(width: 8.0),
           FloatingActionButton(
-            onPressed: _incrementCounter,
+            onPressed: () {
+              context.read<CounterBloc>().add(IncrementEvent());
+            },
             tooltip: 'Increment',
             child: const Icon(Icons.add),
           ),
@@ -55,3 +54,9 @@ class _MyHomePageState extends State<HomeworkBlocScreen> {
     );
   }
 }
+
+class CounterEvent {}
+
+class DecrementEvent extends CounterEvent {}
+
+class IncrementEvent extends CounterEvent {}
