@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/router/page_names.dart';
 import 'package:flutter_lab/widgets_main_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -20,13 +21,13 @@ class StateManagmentBaseScreen extends StatelessWidget {
             NavigationCard(
               title: 'HomeworkCubitScreen',
               description: '',
-              onTap: () => context.go('widgets/lesson_18/cubit'),
+              onTap: () => context.goNamed(ScreenNames.cubitLesson18),
             ),
 
             NavigationCard(
               title: 'HomeworkBlocScreen',
               description: '',
-              onTap: () => context.go('widgets/lesson_18/bloc'),
+              onTap: () => context.goNamed(ScreenNames.blocLesson18),
             ),
           ],
         ),
