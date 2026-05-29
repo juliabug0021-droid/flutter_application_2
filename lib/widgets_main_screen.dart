@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/router/page_names.dart';
 import 'package:go_router/go_router.dart';
 
 class WidgetsScreen extends StatelessWidget {
@@ -21,7 +22,7 @@ class WidgetsScreen extends StatelessWidget {
               description:
                   'Container, SizedBox, Padding, Align, Center, Text, Row, '
                   'Column, Expanded, Buttons, Scroll',
-              onTap: () => context.go('widgets/lesson_11'),
+              onTap: () => context.goNamed(ScreenNames.lesson11),
             ),
 
             NavigationCard(
@@ -30,12 +31,17 @@ class WidgetsScreen extends StatelessWidget {
                   'Custom Widgets, Stateless vs Stateful Widgets, '
                   'Gesture Detector & InkWel, '
                   'TextFields & TextFormFields',
-              onTap: () => context.go('widgets/lesson_12'),
+              onTap: () => context.goNamed(ScreenNames.lesson12),
             ),
             NavigationCard(
               title: 'Homework lesson 13',
               description: 'Training Examples',
-              onTap: () => context.go('widgets/lesson_13'),
+              onTap: () => context.goNamed(ScreenNames.lesson13),
+            ),
+            NavigationCard(
+              title: 'Homework lesson 18',
+              description: 'State managment',
+              onTap: () => context.goNamed(ScreenNames.lesson18),
             ),
           ],
         ),
