@@ -7,4 +7,5 @@ abstract class ScreenNames {
   static const lesson18 = 'lesson_18';
   static const cubitLesson18 = 'cubit';
   static const blocLesson18 = 'bloc';
+  static const rateAppLesson19 = 'rate_app';
 }

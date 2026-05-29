@@ -43,6 +43,11 @@ class WidgetsScreen extends StatelessWidget {
               description: 'State managment',
               onTap: () => context.goNamed(ScreenNames.lesson18),
             ),
+            NavigationCard(
+              title: 'Homework lesson 19',
+              description: 'Rate screen',
+              onTap: () => context.goNamed(ScreenNames.rateAppLesson19),
+            ),
           ],
         ),
       ),
