@@ -21,4 +21,8 @@ class RateAppCubit extends Cubit<RateAppState> {
   void setRating(int rating) {
     emit(state.copyWith(rating: rating));
   }
+
+  void resetRating() {
+    emit(const RateAppState(rating: 0, status: Status.initial));
+  }
 }

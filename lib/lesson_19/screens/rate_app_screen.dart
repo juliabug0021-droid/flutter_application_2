@@ -42,7 +42,7 @@ class _RateAppScreenState extends State<RateAppScreen> {
             child: Container(
               padding: EdgeInsetsGeometry.fromLTRB(16, 32, 16, 32),
               decoration: BoxDecoration(
-                color: Color(0xFF41A6F4),
+                color: Color(0xFF72C1FA),
                 borderRadius: BorderRadius.circular(20),
               ),
 
@@ -81,6 +81,57 @@ class _RateAppScreenState extends State<RateAppScreen> {
                     ],
                   ),
                   const SizedBox(height: 24),
+                  Row(
+                    spacing: 10,
+                    children: [
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          context.read<RateAppCubit>().resetRating();
+                        },
+                        icon: Image.asset(
+                          'assets/images/Reset Rating.png',
+                          width: 20,
+                        ),
+                        label: const Text(
+                          'Reset rating',
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          textAlign: TextAlign.center,
+                        ),
+                        style: ButtonStyle(
+                          elevation: WidgetStatePropertyAll(4),
+                          padding: WidgetStatePropertyAll(
+                            EdgeInsetsGeometry.fromLTRB(22, 13, 22, 13),
+                          ),
+                          shape: WidgetStatePropertyAll(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          backgroundColor: WidgetStatePropertyAll(
+                            Color(0xFF41A6F4),
+                          ),
+                        ),
+                      ),
+                      // OutlinedButton.icon(
+                      //   onPressed: () {
+                      //     context.read<RateAppCubit>().resetRating();
+                      //   },
+                      //   icon: Image.asset(
+                      //     'assets/images/Reset Rating.png',
+                      //     width: 20,
+                      //   ),
+                      //   label: const Text(
+                      //     'Reset rating',
+                      //     style: TextStyle(color: Colors.white, fontSize: 20),
+                      //     textAlign: TextAlign.center,
+                      //   ),
+                      //   style: OutlinedButton.styleFrom(
+                      //     padding: EdgeInsetsGeometry.fromLTRB(22, 13, 22, 13),
+                      //     backgroundColor: Color(0xFF41A6F4),
+                      //   ),
+                      // ),
+                    ],
+                  ),
                 ],
               ),
             ),
