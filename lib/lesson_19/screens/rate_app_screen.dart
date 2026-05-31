@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lab/lesson_19/bloc/rate_app_cubit.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RateAppScreen extends StatefulWidget {
   const RateAppScreen({super.key});
@@ -39,6 +40,7 @@ class _RateAppScreenState extends State<RateAppScreen> {
           return Padding(
             padding: EdgeInsetsGeometry.only(top: 48),
             child: Container(
+              padding: EdgeInsetsGeometry.fromLTRB(16, 32, 16, 32),
               decoration: BoxDecoration(
                 color: Color(0xFF41A6F4),
                 borderRadius: BorderRadius.circular(20),
@@ -50,13 +52,14 @@ class _RateAppScreenState extends State<RateAppScreen> {
                   Text(
                     'How would you rate the app?',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: GoogleFonts.montserrat(
                       color: Color(0xFF1B3D70),
                       fontSize: 20,
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight(600),
                     ),
                   ),
+                  const SizedBox(height: 24),
                   Row(
                     spacing: 20,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -71,12 +74,13 @@ class _RateAppScreenState extends State<RateAppScreen> {
                             state.rating >= index + 1
                                 ? 'assets/images/Rate Star.png'
                                 : 'assets/images/Default Star.png',
-                            width: 32,
+                            width: 34,
                           ),
                         );
                       }),
                     ],
                   ),
+                  const SizedBox(height: 24),
                 ],
               ),
             ),
