@@ -63,23 +63,17 @@ class _RateAppScreenState extends State<RateAppScreen> {
 
                     children: [
                       ...List.generate(5, (index) {
-                        if (state.rating >= index + 1) {
-                          return IconButton(
-                            onPressed: () {},
-                            icon: Image.asset(
-                              'assets/images/Rate Star.png',
-                              width: 48,
-                            ),
-                          );
-                        } else {
-                          return IconButton(
-                            onPressed: () {},
-                            icon: Image.asset(
-                              'assets/images/Default Star.png',
-                              width: 48,
-                            ),
-                          );
-                        }
+                        return IconButton(
+                          onPressed: () {
+                            context.read<RateAppCubit>().setRating(index + 1);
+                          },
+                          icon: Image.asset(
+                            state.rating >= index + 1
+                                ? 'assets/images/Rate Star.png'
+                                : 'assets/images/Default Star.png',
+                            width: 32,
+                          ),
+                        );
                       }),
                     ],
                   ),

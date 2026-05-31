@@ -17,4 +17,8 @@ class RateAppState {
 
 class RateAppCubit extends Cubit<RateAppState> {
   RateAppCubit() : super(RateAppState(rating: 0));
+
+  void setRating(int rating) {
+    emit(state.copyWith(rating: rating));
+  }
 }

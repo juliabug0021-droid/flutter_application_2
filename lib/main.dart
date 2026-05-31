@@ -21,7 +21,6 @@ class FlutterWidgetsApp extends StatelessWidget {
         BlocProvider<CounterBloc>(create: (context) => CounterBloc()),
         BlocProvider<RateAppCubit>(create: (context) => RateAppCubit()),
       ],
-
       child: MaterialApp.router(routerConfig: appRouter),
     );
   }
