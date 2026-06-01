@@ -35,19 +35,53 @@ class _RateAppScreenState extends State<RateAppScreen> {
         backgroundColor: Color(0xFF1B3D70),
       ),
 
-      body: BlocBuilder<RateAppCubit, RateAppState>(
+      body: BlocConsumer<RateAppCubit, RateAppState>(
+        listener: (context, state) {
+          if (state.status == Status.success) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Container(
+                  height: 60,
+                  width: 390,
+                  padding: const EdgeInsets.fromLTRB(37, 20, 37, 20),
+                  decoration: BoxDecoration(
+                    color: Color(0xFF41A6F4),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Image.asset('assets/images/Star Smile.png', height: 20),
+                      Text(
+                        'Rating submitted successfully',
+                        style: GoogleFonts.montserrat(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight(600),
+                        ),
+                      ),
+                      Image.asset('assets/images/Star Smile.png', height: 20),
+                    ],
+                  ),
+                ),
+                duration: Duration(seconds: 3),
+              ),
+            );
+          }
+        },
         builder: (context, state) {
           return Padding(
-            padding: EdgeInsetsGeometry.only(top: 48),
+            padding: const EdgeInsets.only(top: 48),
             child: Container(
-              padding: EdgeInsetsGeometry.fromLTRB(16, 32, 16, 32),
+              padding: const EdgeInsets.fromLTRB(16, 32, 16, 32),
               decoration: BoxDecoration(
                 color: Color(0xFF72C1FA),
                 borderRadius: BorderRadius.circular(20),
               ),
 
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     'How would you rate the app?',
@@ -82,54 +116,11 @@ class _RateAppScreenState extends State<RateAppScreen> {
                   ),
                   const SizedBox(height: 24),
                   Row(
+                    mainAxisSize: MainAxisSize.min,
                     spacing: 10,
                     children: [
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          context.read<RateAppCubit>().resetRating();
-                        },
-                        icon: Image.asset(
-                          'assets/images/Reset Rating.png',
-                          width: 20,
-                        ),
-                        label: const Text(
-                          'Reset rating',
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                          textAlign: TextAlign.center,
-                        ),
-                        style: ButtonStyle(
-                          elevation: WidgetStatePropertyAll(4),
-                          padding: WidgetStatePropertyAll(
-                            EdgeInsetsGeometry.fromLTRB(22, 13, 22, 13),
-                          ),
-                          shape: WidgetStatePropertyAll(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          backgroundColor: WidgetStatePropertyAll(
-                            Color(0xFF41A6F4),
-                          ),
-                        ),
-                      ),
-                      // OutlinedButton.icon(
-                      //   onPressed: () {
-                      //     context.read<RateAppCubit>().resetRating();
-                      //   },
-                      //   icon: Image.asset(
-                      //     'assets/images/Reset Rating.png',
-                      //     width: 20,
-                      //   ),
-                      //   label: const Text(
-                      //     'Reset rating',
-                      //     style: TextStyle(color: Colors.white, fontSize: 20),
-                      //     textAlign: TextAlign.center,
-                      //   ),
-                      //   style: OutlinedButton.styleFrom(
-                      //     padding: EdgeInsetsGeometry.fromLTRB(22, 13, 22, 13),
-                      //     backgroundColor: Color(0xFF41A6F4),
-                      //   ),
-                      // ),
+                      SubmitRatingButton(state: state),
+                      ResetRatingButton(),
                     ],
                   ),
                 ],
@@ -137,6 +128,86 @@ class _RateAppScreenState extends State<RateAppScreen> {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class ResetRatingButton extends StatelessWidget {
+  const ResetRatingButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 173,
+      height: 46,
+      child: ElevatedButton.icon(
+        onPressed: () {
+          context.read<RateAppCubit>().resetRating();
+        },
+        style: ButtonStyle(
+          elevation: WidgetStatePropertyAll(4),
+          padding: WidgetStatePropertyAll(EdgeInsets.fromLTRB(22, 13, 22, 13)),
+          shape: WidgetStatePropertyAll(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          ),
+          backgroundColor: WidgetStatePropertyAll(Color(0xFF41A6F4)),
+        ),
+        icon: Image.asset('assets/images/Reset Rating.png', height: 20),
+        label: Text(
+          'Reset rating',
+          style: GoogleFonts.montserrat(
+            color: Colors.white,
+            fontSize: 16,
+            fontStyle: FontStyle.normal,
+            fontWeight: FontWeight(600),
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+  }
+}
+
+class SubmitRatingButton extends StatelessWidget {
+  const SubmitRatingButton({super.key, required this.state});
+  final RateAppState state;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 173,
+      height: 46,
+      child: ElevatedButton(
+        onPressed: () {
+          context.read<RateAppCubit>().submitRating();
+        },
+        style: ButtonStyle(
+          elevation: WidgetStatePropertyAll(4),
+          shape: WidgetStatePropertyAll(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          ),
+          backgroundColor: WidgetStatePropertyAll(Color(0xFF1B3D70)),
+        ),
+        child: state.status == Status.loading
+            ? SizedBox(
+                width: 24,
+                height: 24,
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                  strokeWidth: 2,
+                ),
+              )
+            : Text(
+                'Submit rating',
+                style: GoogleFonts.montserrat(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight(600),
+                ),
+                textAlign: TextAlign.center,
+              ),
       ),
     );
   }

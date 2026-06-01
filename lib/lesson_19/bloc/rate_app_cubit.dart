@@ -25,4 +25,10 @@ class RateAppCubit extends Cubit<RateAppState> {
   void resetRating() {
     emit(const RateAppState(rating: 0, status: Status.initial));
   }
+
+  void submitRating() async {
+    emit(state.copyWith(status: Status.loading));
+    await Future.delayed(Duration(milliseconds: 1000));
+    emit(state.copyWith(status: Status.success));
+  }
 }
