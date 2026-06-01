@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lab/lesson_19/bloc/rate_app_cubit.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RateAppScreen extends StatefulWidget {
@@ -38,36 +39,7 @@ class _RateAppScreenState extends State<RateAppScreen> {
       body: BlocConsumer<RateAppCubit, RateAppState>(
         listener: (context, state) {
           if (state.status == Status.success) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Container(
-                  height: 60,
-                  width: 390,
-                  padding: const EdgeInsets.fromLTRB(37, 20, 37, 20),
-                  decoration: BoxDecoration(
-                    color: Color(0xFF41A6F4),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Image.asset('assets/images/Star Smile.png', height: 20),
-                      Text(
-                        'Rating submitted successfully',
-                        style: GoogleFonts.montserrat(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontStyle: FontStyle.normal,
-                          fontWeight: FontWeight(600),
-                        ),
-                      ),
-                      Image.asset('assets/images/Star Smile.png', height: 20),
-                    ],
-                  ),
-                ),
-                duration: Duration(seconds: 3),
-              ),
-            );
+            context.pop(true);
           }
         },
         builder: (context, state) {
@@ -208,6 +180,42 @@ class SubmitRatingButton extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
+      ),
+    );
+  }
+}
+
+class MySnackBar extends StatelessWidget {
+  const MySnackBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 60,
+      width: 390,
+      padding: const EdgeInsets.fromLTRB(37, 20, 37, 20),
+      decoration: BoxDecoration(
+        color: Color(0xFF41A6F4),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset('assets/images/Star Smile.png', height: 20),
+          const SizedBox(width: 12),
+          Text(
+            'Rating submitted successfully',
+            style: GoogleFonts.montserrat(
+              color: Colors.white,
+              fontSize: 16,
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight(600),
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(width: 12),
+          Image.asset('assets/images/Star Smile.png', height: 20),
+        ],
       ),
     );
   }
