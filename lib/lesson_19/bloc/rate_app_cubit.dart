@@ -31,4 +31,8 @@ class RateAppCubit extends Cubit<RateAppState> {
     await Future.delayed(Duration(milliseconds: 1000));
     emit(state.copyWith(status: Status.success));
   }
+
+  void cancelRating() {
+    emit(const RateAppState(rating: 0, status: Status.error));
+  }
 }

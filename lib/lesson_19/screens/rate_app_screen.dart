@@ -12,10 +12,20 @@ class RateAppScreen extends StatefulWidget {
 }
 
 class _RateAppScreenState extends State<RateAppScreen> {
+  late final RateAppCubit _cubit;
   @override
   void initState() {
     super.initState();
-    // context.read<RateAppCubit>().resetRating();
+    _cubit = context.read<RateAppCubit>();
+  }
+
+  @override
+  void dispose() {
+    if (_cubit.state.status != Status.success) {
+      _cubit.cancelRating();
+    }
+
+    super.dispose();
   }
 
   @override
@@ -199,7 +209,7 @@ class MySnackBar extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset('assets/images/Star Smile.png', height: 20),
           const SizedBox(width: 12),
