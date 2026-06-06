@@ -66,7 +66,9 @@ class _RateAppScreenState extends State<RateAppScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'How would you rate the app?',
+                    state.status == Status.success
+                        ? 'You rated the app'
+                        : 'How would you rate the app?',
                     textAlign: TextAlign.center,
                     style: GoogleFonts.montserrat(
                       color: Color(0xFF1B3D70),
@@ -75,6 +77,7 @@ class _RateAppScreenState extends State<RateAppScreen> {
                       fontWeight: FontWeight(600),
                     ),
                   ),
+
                   const SizedBox(height: 24),
                   Row(
                     spacing: 20,
@@ -83,9 +86,13 @@ class _RateAppScreenState extends State<RateAppScreen> {
                     children: [
                       ...List.generate(5, (index) {
                         return IconButton(
-                          onPressed: () {
-                            context.read<RateAppCubit>().setRating(index + 1);
-                          },
+                          onPressed: state.status == Status.success
+                              ? null
+                              : () {
+                                  context.read<RateAppCubit>().setRating(
+                                    index + 1,
+                                  );
+                                },
                           icon: Image.asset(
                             state.rating >= index + 1
                                 ? 'assets/images/Rate Star.png'
@@ -97,14 +104,16 @@ class _RateAppScreenState extends State<RateAppScreen> {
                     ],
                   ),
                   const SizedBox(height: 24),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    spacing: 10,
-                    children: [
-                      SubmitRatingButton(state: state),
-                      ResetRatingButton(),
-                    ],
-                  ),
+                  state.status == Status.success
+                      ? RateAgainButton()
+                      : Row(
+                          mainAxisSize: MainAxisSize.min,
+                          spacing: 10,
+                          children: [
+                            SubmitRatingButton(state: state),
+                            ResetRatingButton(),
+                          ],
+                        ),
                 ],
               ),
             ),
@@ -161,9 +170,12 @@ class SubmitRatingButton extends StatelessWidget {
       width: 173,
       height: 46,
       child: ElevatedButton(
-        onPressed: () {
-          context.read<RateAppCubit>().submitRating();
-        },
+        onPressed: state.rating == 0
+            ? null
+            : () {
+                context.read<RateAppCubit>().submitRating();
+              },
+
         style: ButtonStyle(
           elevation: WidgetStatePropertyAll(4),
           shape: WidgetStatePropertyAll(
@@ -190,6 +202,41 @@ class SubmitRatingButton extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
+      ),
+    );
+  }
+}
+
+class RateAgainButton extends StatelessWidget {
+  const RateAgainButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 358,
+      height: 46,
+      child: ElevatedButton(
+        onPressed: () {
+          context.read<RateAppCubit>().resetRating();
+        },
+        style: ButtonStyle(
+          elevation: WidgetStatePropertyAll(4),
+          padding: WidgetStatePropertyAll(EdgeInsets.fromLTRB(22, 13, 22, 13)),
+          shape: WidgetStatePropertyAll(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          ),
+          backgroundColor: WidgetStatePropertyAll(Color(0xFF1B3D70)),
+        ),
+        child: Text(
+          'Rate again',
+          style: GoogleFonts.montserrat(
+            color: Colors.white,
+            fontSize: 16,
+            fontStyle: FontStyle.normal,
+            fontWeight: FontWeight(600),
+          ),
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }
