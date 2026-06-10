@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 class BallAnimation extends StatefulWidget {
@@ -7,10 +9,49 @@ class BallAnimation extends StatefulWidget {
   State<BallAnimation> createState() => _BallAnimationState();
 }
 
-class _BallAnimationState extends State<BallAnimation> {
+class _BallAnimationState extends State<BallAnimation>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final Animation<double> _animation;
+  final Tween<double> _rotationAnimation = Tween<double>(begin: 0, end: 3);
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      duration: const Duration(seconds: 3),
+      vsync: this,
+    );
+
+    _controller.addListener(() {
+      setState(() {});
+    });
+    _animation = _rotationAnimation.animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text(
+          'Animated Ball',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontStyle: FontStyle.normal,
+            fontWeight: FontWeight(500),
+          ),
+        ),
+        backgroundColor: Color.fromARGB(255, 102, 46, 22),
+      ),
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -21,9 +62,15 @@ class _BallAnimationState extends State<BallAnimation> {
 
               child: Align(
                 alignment: AlignmentGeometry.bottomCenter,
-                child: Transform.rotate(
-                  angle: 10,
-                  child: Image.asset('assets/images/basketball.png', width: 50),
+                child: GestureDetector(
+                  onTap: _controller.forward,
+                  child: Transform.rotate(
+                    angle: _animation.value * math.pi,
+                    child: Image.asset(
+                      'assets/images/basketball.png',
+                      width: 50,
+                    ),
+                  ),
                 ),
               ),
             ),
