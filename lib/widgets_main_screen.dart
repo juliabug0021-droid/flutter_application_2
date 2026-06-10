@@ -63,6 +63,11 @@ class WidgetsScreen extends StatelessWidget {
                 }
               },
             ),
+            NavigationCard(
+              title: 'Homework lesson 21',
+              description: 'Explicit Animations',
+              onTap: () => context.goNamed(ScreenNames.lesson21),
+            ),
           ],
         ),
       ),
