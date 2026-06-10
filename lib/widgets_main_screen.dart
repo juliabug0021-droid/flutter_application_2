@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lab/lesson_19/screens/rate_app_screen.dart';
 import 'package:flutter_lab/router/page_names.dart';
 import 'package:go_router/go_router.dart';
 
@@ -42,6 +43,25 @@ class WidgetsScreen extends StatelessWidget {
               title: 'Homework lesson 18',
               description: 'State managment',
               onTap: () => context.goNamed(ScreenNames.lesson18),
+            ),
+            NavigationCard(
+              title: 'Homework lesson 19',
+              description: 'Rate screen',
+              onTap: () async {
+                final result = await context.pushNamed(
+                  ScreenNames.rateAppLesson19,
+                );
+                if (result != null && context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    (SnackBar(
+                      content: MySnackBar(),
+                      duration: Duration(seconds: 3),
+                      behavior: SnackBarBehavior.floating,
+                      backgroundColor: Color(0xFF656565),
+                    )),
+                  );
+                }
+              },
             ),
           ],
         ),
