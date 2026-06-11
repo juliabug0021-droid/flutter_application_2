@@ -12,8 +12,8 @@ class BallAnimation extends StatefulWidget {
 class _BallAnimationState extends State<BallAnimation>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
-  late final Animation<double> _animation;
-  final Tween<double> _rotationAnimation = Tween<double>(begin: 0, end: 3);
+  late final Animation<double> _rotationAnimation;
+  late final Animation<Alignment> _jumpAnimation;
 
   @override
   void initState() {
@@ -24,12 +24,30 @@ class _BallAnimationState extends State<BallAnimation>
       vsync: this,
     );
 
-    _controller.addListener(() {
-      setState(() {});
-    });
-    _animation = _rotationAnimation.animate(_controller);
+    _rotationAnimation = Tween<double>(begin: 0, end: 3).animate(_controller);
+    _jumpAnimation = TweenSequence<Alignment>([
+      TweenSequenceItem(
+        tween: AlignmentTween(
+          begin: const Alignment(0, 1.0),
+          end: const Alignment(0, -1.0),
+        ).chain(CurveTween(curve: Curves.easeOut)),
+        weight: 25,
+      ),
+      TweenSequenceItem(
+        tween: ConstantTween(const Alignment(0, -1.0)),
+        weight: 5,
+      ),
+      TweenSequenceItem(
+        tween: AlignmentTween(
+          begin: const Alignment(0, -1.0),
+          end: const Alignment(0, 1.0),
+        ).chain(CurveTween(curve: Curves.bounceOut)),
+        weight: 70,
+      ),
+    ]).animate(_controller);
   }
 
+  //
   @override
   void dispose() {
     _controller.dispose();
@@ -60,15 +78,20 @@ class _BallAnimationState extends State<BallAnimation>
             child: Container(
               color: Colors.blueGrey,
 
-              child: Align(
-                alignment: AlignmentGeometry.bottomCenter,
-                child: GestureDetector(
-                  onTap: _controller.forward,
-                  child: Transform.rotate(
-                    angle: _animation.value * math.pi,
-                    child: Image.asset(
-                      'assets/images/basketball.png',
-                      width: 50,
+              child: GestureDetector(
+                onTap: () {
+                  _controller.forward(from: 0);
+                },
+                child: AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, child) => Align(
+                    alignment: _jumpAnimation.value,
+                    child: Transform.rotate(
+                      angle: _rotationAnimation.value * math.pi,
+                      child: Image.asset(
+                        'assets/images/basketball.png',
+                        width: 70,
+                      ),
                     ),
                   ),
                 ),
