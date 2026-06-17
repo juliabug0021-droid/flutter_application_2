@@ -10,8 +10,14 @@ class UserProfileCubit extends Cubit<UserProfileState> {
   Future<void> loadUserProfile({bool shouldFail = true}) async {
     emit(UserProfileLoading());
 
-    final user = await repository.getUserProfile(shouldFail);
+    try {
+      final user = await repository.getUserProfile(shouldFail);
 
-    emit(UserProfileLoaded(user));
+      emit(UserProfileLoaded(user));
+    } on CustomServerError {
+      emit(UserProfileError());
+    } catch (e) {
+      emit(UserProfileError());
+    }
   }
 }

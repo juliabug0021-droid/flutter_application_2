@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_lab/features/error_handling/error_handling_homework/data/repository/entity/user_entity.dart';
-import 'package:flutter_lab/features/error_handling/error_handling_homework/presentation/cubit/user_profile_cubit.dart';
-import 'package:flutter_lab/features/error_handling/error_handling_homework/presentation/cubit/user_profile_state.dart';
+import 'package:flutter_lab/lesson_22/error_handling_homework/data/repository/entity/user_entity.dart';
+import 'package:flutter_lab/lesson_22/error_handling_homework/presentation/cubit/user_profile_cubit.dart';
+import 'package:flutter_lab/lesson_22/error_handling_homework/presentation/cubit/user_profile_state.dart';
 
 class UserProfileHomeworkScreen extends StatefulWidget {
   const UserProfileHomeworkScreen({super.key});
@@ -29,7 +29,7 @@ class _UserProfileHomeworkScreenState extends State<UserProfileHomeworkScreen> {
             UserProfileLoaded() => _LoadedProfileWidget(user: state.user),
 
             //Error State
-            // TODO(student): Need implement error state
+            UserProfileError() => _ErrorProfileWidget(),
           };
         },
       ),
@@ -57,11 +57,7 @@ class _LoadedProfileWidget extends StatelessWidget {
                 const CircleAvatar(
                   radius: 50,
                   backgroundColor: Colors.blue,
-                  child: Icon(
-                    Icons.person,
-                    size: 50,
-                    color: Colors.white,
-                  ),
+                  child: Icon(Icons.person, size: 50, color: Colors.white),
                 ),
                 const SizedBox(height: 16),
                 Text(
@@ -87,5 +83,19 @@ class _LoadedProfileWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _ErrorProfileWidget extends StatefulWidget {
+  const _ErrorProfileWidget({super.key});
+
+  @override
+  State<_ErrorProfileWidget> createState() => __ErrorProfileWidgetState();
+}
+
+class __ErrorProfileWidgetState extends State<_ErrorProfileWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
