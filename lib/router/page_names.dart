@@ -9,4 +9,5 @@ abstract class ScreenNames {
   static const blocLesson18 = 'bloc';
   static const rateAppLesson19 = 'rate_app';
   static const lesson21 = 'ball_animation';
+  static const lesson22 = 'error_handling';
 }
