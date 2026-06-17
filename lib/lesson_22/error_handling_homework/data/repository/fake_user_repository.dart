@@ -1,4 +1,4 @@
-import 'package:flutter_lab/features/error_handling/error_handling_homework/data/repository/entity/user_entity.dart';
+import 'package:flutter_lab/lesson_22/error_handling_homework/data/repository/entity/user_entity.dart';
 
 class FakeUserRepository {
   Future<UserEntity> getUserProfile(bool shouldFail) async {
