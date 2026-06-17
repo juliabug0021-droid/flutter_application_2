@@ -47,7 +47,6 @@ class _BallAnimationState extends State<BallAnimation>
     ]).animate(_controller);
   }
 
-  //
   @override
   void dispose() {
     _controller.dispose();
