@@ -29,7 +29,7 @@ class _UserProfileHomeworkScreenState extends State<UserProfileHomeworkScreen> {
             UserProfileLoaded() => _LoadedProfileWidget(user: state.user),
 
             //Error State
-            UserProfileError() => _ErrorProfileWidget(),
+            UserProfileError() => ErrorProfileWidget(),
           };
         },
       ),
@@ -86,16 +86,48 @@ class _LoadedProfileWidget extends StatelessWidget {
   }
 }
 
-class _ErrorProfileWidget extends StatefulWidget {
-  const _ErrorProfileWidget({super.key});
+class ErrorProfileWidget extends StatefulWidget {
+  const ErrorProfileWidget({super.key});
 
   @override
-  State<_ErrorProfileWidget> createState() => __ErrorProfileWidgetState();
+  State<ErrorProfileWidget> createState() => ErrorProfileWidgetState();
 }
 
-class __ErrorProfileWidgetState extends State<_ErrorProfileWidget> {
+class ErrorProfileWidgetState extends State<ErrorProfileWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Text(
+            'Server is temporarily unavailable',
+            style: TextStyle(
+              color: Color.fromARGB(255, 175, 49, 49),
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 20),
+          Image.asset('assets/images/sad emoji.png', width: 200),
+          const SizedBox(height: 30),
+          ElevatedButton(
+            onPressed: () {
+              context.read<UserProfileCubit>().loadUserProfile(
+                shouldFail: false,
+              );
+            },
+            child: const Text(
+              'Спробувати знову',
+              style: TextStyle(
+                color: Color.fromARGB(255, 0, 0, 0),
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
