@@ -8,4 +8,5 @@ void main() async {
   );
 
   final chequeMap = jsonDecode(jsonCheque) as Map<String, dynamic>;
+  print(chequeMap.keys);
 }
