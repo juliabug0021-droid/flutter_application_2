@@ -73,6 +73,11 @@ class WidgetsScreen extends StatelessWidget {
               description: 'Error Handling',
               onTap: () => context.goNamed(ScreenNames.lesson22),
             ),
+            NavigationCard(
+              title: 'Homework lesson 25',
+              description: 'Робота з REST API, JSON',
+              onTap: () => context.goNamed(ScreenNames.chequeDtoLesson25),
+            ),
           ],
         ),
       ),

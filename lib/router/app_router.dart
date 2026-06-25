@@ -9,6 +9,7 @@ import 'package:flutter_lab/lesson_21/homework_animations.dart';
 import 'package:flutter_lab/lesson_22/error_handling_homework/data/repository/fake_user_repository.dart';
 import 'package:flutter_lab/lesson_22/error_handling_homework/presentation/cubit/user_profile_cubit.dart';
 import 'package:flutter_lab/lesson_22/error_handling_homework/presentation/ui/screens/user_profile_homework_screen.dart';
+import 'package:flutter_lab/lesson_25/cheque_screen.dart';
 import 'package:flutter_lab/router/page_names.dart';
 import 'package:flutter_lab/widgets_main_screen.dart';
 import 'package:flutter_lab/lesson_13/homework_13_screen.dart';
@@ -78,6 +79,11 @@ final appRouter = GoRouter(
                     UserProfileCubit(FakeUserRepository())..loadUserProfile(),
                 child: UserProfileHomeworkScreen(),
               ),
+            ),
+            GoRoute(
+              path: 'cheque_screen',
+              name: ScreenNames.chequeDtoLesson25,
+              builder: (context, state) => ChequeScreen(),
             ),
           ],
         ),
