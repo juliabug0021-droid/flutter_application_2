@@ -14,9 +14,9 @@ ChequeDto _$ChequeDtoFromJson(Map<String, dynamic> json) => ChequeDto(
   chequeLines: (json['chequeLines'] as List<dynamic>)
       .map((e) => ChequeLinesDto.fromJson(e as Map<String, dynamic>))
       .toList(),
-  chequeActions: ChequeActionsDto.fromJson(
-    json['chequeActions'] as Map<String, dynamic>,
-  ),
+  chequeActions: (json['chequeActions'] as List<dynamic>)
+      .map((e) => ChequeActionsDto.fromJson(e as Map<String, dynamic>))
+      .toList(),
   chPrediction: json['chPrediction'] as String,
   sumCashback: (json['sumCashback'] as num).toInt(),
   chequeMagicName: json['chequeMagicName'] as String,
@@ -27,7 +27,7 @@ Map<String, dynamic> _$ChequeDtoToJson(ChequeDto instance) => <String, dynamic>{
   'chequeHeader': instance.chequeHeader.toJson(),
   'sumDiscount': instance.sumDiscount,
   'chequeLines': instance.chequeLines.map((e) => e.toJson()).toList(),
-  'chequeActions': instance.chequeActions.toJson(),
+  'chequeActions': instance.chequeActions.map((e) => e.toJson()).toList(),
   'chPrediction': instance.chPrediction,
   'sumCashback': instance.sumCashback,
   'chequeMagicName': instance.chequeMagicName,

@@ -10,7 +10,7 @@ class ChequeDto {
   final ChequeHeaderDto chequeHeader;
   final double sumDiscount;
   final List<ChequeLinesDto> chequeLines;
-  final ChequeActionsDto chequeActions;
+  final List<ChequeActionsDto> chequeActions;
   final String chPrediction;
   final int sumCashback;
   final String chequeMagicName;

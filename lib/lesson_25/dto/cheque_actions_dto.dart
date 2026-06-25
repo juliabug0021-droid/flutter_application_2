@@ -4,11 +4,11 @@ part 'cheque_actions_dto.g.dart';
 @JsonSerializable()
 class ChequeActionsDto {
   final int actionType;
-  final String actionTypeCodeName;
+  final String? actionTypeCodeName;
   final int actionId;
   final int discpercent;
   final double discount;
-  final String varcharData;
+  final String? varcharData;
 
   ChequeActionsDto({
     required this.actionType,

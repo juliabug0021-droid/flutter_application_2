@@ -45,8 +45,8 @@ class AdditionalDataDto {
   final String externalProductId;
   final String slug;
   final String classifierSapId;
-  final String brandId;
-  final String brandTitle;
+  final String? brandId;
+  final String? brandTitle;
   final bool weighted;
   final String departmentName;
   final List<String> barcodes;

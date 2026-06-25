@@ -49,8 +49,8 @@ AdditionalDataDto _$AdditionalDataDtoFromJson(Map<String, dynamic> json) =>
       externalProductId: json['externalProductId'] as String,
       slug: json['slug'] as String,
       classifierSapId: json['classifierSapId'] as String,
-      brandId: json['brandId'] as String,
-      brandTitle: json['brandTitle'] as String,
+      brandId: json['brandId'] as String?,
+      brandTitle: json['brandTitle'] as String?,
       weighted: json['weighted'] as bool,
       departmentName: json['departmentName'] as String,
       barcodes: (json['barcodes'] as List<dynamic>)

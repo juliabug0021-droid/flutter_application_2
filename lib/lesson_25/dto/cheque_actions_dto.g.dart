@@ -9,11 +9,11 @@ part of 'cheque_actions_dto.dart';
 ChequeActionsDto _$ChequeActionsDtoFromJson(Map<String, dynamic> json) =>
     ChequeActionsDto(
       actionType: (json['actionType'] as num).toInt(),
-      actionTypeCodeName: json['actionTypeCodeName'] as String,
+      actionTypeCodeName: json['actionTypeCodeName'] as String?,
       actionId: (json['actionId'] as num).toInt(),
       discpercent: (json['discpercent'] as num).toInt(),
       discount: (json['discount'] as num).toDouble(),
-      varcharData: json['varcharData'] as String,
+      varcharData: json['varcharData'] as String?,
     );
 
 Map<String, dynamic> _$ChequeActionsDtoToJson(ChequeActionsDto instance) =>
