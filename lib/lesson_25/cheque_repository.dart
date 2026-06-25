@@ -1,12 +1,16 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
+import 'package:flutter_lab/lesson_25/cheque_entity.dart';
+import 'package:flutter_lab/lesson_25/dto/cheque_dto.dart';
 
-void main() async {
+Future<ChequeEntity> fetchCheque() async {
   final jsonCheque = await rootBundle.loadString(
     'assets/json/silpo_cheque_example.json',
   );
 
   final chequeMap = jsonDecode(jsonCheque) as Map<String, dynamic>;
-  print(chequeMap.keys);
+  final cheque = ChequeDto.fromJson(chequeMap);
+  final chequeEntity = ChequeEntity.fromDto(cheque);
+  return ChequeEntity.fromDto(cheque);
 }

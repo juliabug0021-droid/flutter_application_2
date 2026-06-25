@@ -9,7 +9,7 @@ part 'cheque_dto.g.dart';
 class ChequeDto {
   final ChequeHeaderDto chequeHeader;
   final double sumDiscount;
-  final ChequeLinesDto chequeLines;
+  final List<ChequeLinesDto> chequeLines;
   final ChequeActionsDto chequeActions;
   final String chPrediction;
   final int sumCashback;
